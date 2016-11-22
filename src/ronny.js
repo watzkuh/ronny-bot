@@ -11,12 +11,12 @@ const bot = new SlackBot({
   name: 'Ronnie Schäfer'
 });
 
-const params = {
+const default_params = {
   as_user: true
 };
 
 bot.on('start', function(data) {
-  bot.postMessageToGroup('dev', 'BOT RUNNING', params);
+  bot.postMessageToGroup('dev', 'BOT RUNNING', default_params);
 });
 
 bot.on('message', function(data) {
@@ -34,8 +34,13 @@ bot.on('message', function(data) {
           dict.forEach(d => {
             if (d.keys.some(k => ~msg.indexOf(k))) {
               var message = d.message;
+              var params = default_params;
               if (typeof message === 'function')
                 message = message();
+              if (message.params) {
+                for (var attrname in message.params) { params[attrname] = message.params[attrname];}
+                message = message.msgString;
+              }
               bot.postMessage(toChannel, message, params);
             }
           });

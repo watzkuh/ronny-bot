@@ -21,5 +21,6 @@ add('norwegen', 'Darum sind die auch nicht in der EU, weil die am Leben vorbeila
 add('zu hause', 'Sollen wir nach Hause fahr\'n oder wat?');
 add('kann nichts', 'Junge, Junge, Junge, Junge, Junge, Junge, Junge, Junge, Junge, Junge!');
 add('kokowei', require('./kokoBuilder.js').getKoko);
+add(['a5', 'rhein', 'main', 'breakdance', 'club', 'feiern'], require('./chris.js').safe);
 
 module.exports = dict;
