@@ -3,11 +3,27 @@
 const SlackBot = require('slackbots');
 const dict = require('./answer.js');
 
-const config = require('../config.json');
+//Personalize bot parameters
+let botToken, botId;
+try {
+  const config = require('../config.json');
+  botToken = config.apiToken;
+  botId = config.botId;
+}
+catch (exception) {
+  if(process.env.BOT_TOKEN && process.env.BOT_ID){
+    botToken = process.env.BOT_TOKEN;
+    botId = process.env.BOT_ID;
+  }
+  else {
+    console.log("Initialisation Error: Please provide configuration options");
+    process.exit(1);
+  }
+}
 
 // create a bot
 const bot = new SlackBot({
-  token: config.apiToken,
+  token: botToken,
   name: 'Ronnie Schäfer'
 });
 
@@ -27,12 +43,12 @@ bot.on('message', function (data) {
   switch (data.type) {
     case 'message': {
       let toChannel = data.channel;
-      if (toChannel && data.bot_id !== config.botID) {
+      if (toChannel && data.bot_id !== botId) {
         let msg = data.text.toLowerCase();
         dict.forEach(d => {
           if (d.keys.some(k => ~msg.indexOf(k))) {
             let message = d.message;
-            let params = { as_user: default_params.as_user};
+            let params = {as_user: default_params.as_user};
             if (typeof message === 'function')
               message = message();
             if (message.params) {
