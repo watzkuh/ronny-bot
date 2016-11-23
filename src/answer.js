@@ -1,6 +1,6 @@
 'use strict';
 
-let dict = [];
+const dict = [];
 
 /**
  * Adds a message to ronny

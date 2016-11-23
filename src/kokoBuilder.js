@@ -4,7 +4,7 @@ function getDiglett() {
   return ':digletthead:\n:diglettdirt:\n Hoppla, ein Digda hat den Kranplatz entdichtet.';
 }
 
-function isDigglettInDisguise(pokemoji) {
+function isDigglettInDisguise() {
   const rng = Math.random();
   return rng < 0.05;
 }

@@ -9,14 +9,12 @@ try {
   const config = require('../config.json');
   botToken = config.apiToken;
   botId = config.botId;
-}
-catch (exception) {
-  if(process.env.BOT_TOKEN && process.env.BOT_ID){
+} catch (exception) {
+  if (process.env.BOT_TOKEN && process.env.BOT_ID) {
     botToken = process.env.BOT_TOKEN;
     botId = process.env.BOT_ID;
-  }
-  else {
-    console.log("Initialisation Error: Please provide configuration options");
+  } else {
+    console.log('Initialisation Error: Please provide configuration options');
     process.exit(1);
   }
 }
@@ -31,7 +29,7 @@ const default_params = {
   as_user: true
 };
 
-bot.on('start', function (data) {
+bot.on('start', function () {
   bot.postMessageToGroup('dev', 'BOT RUNNING', default_params, null);
 });
 
@@ -42,17 +40,17 @@ bot.on('message', function (data) {
 
   switch (data.type) {
     case 'message': {
-      let toChannel = data.channel;
+      const toChannel = data.channel;
       if (toChannel && data.bot_id !== botId) {
-        let msg = data.text.toLowerCase();
+        const msg = data.text.toLowerCase();
         dict.forEach(d => {
           if (d.keys.some(k => ~msg.indexOf(k))) {
             let message = d.message;
-            let params = {as_user: default_params.as_user};
+            const params = {as_user: default_params.as_user};
             if (typeof message === 'function')
               message = message();
             if (message.params) {
-              for (let attrname in message.params) {
+              for (const attrname in message.params) {
                 params[attrname] = message.params[attrname];
               }
               message = message.msgString;
