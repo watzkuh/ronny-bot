@@ -16,7 +16,7 @@ const default_params = {
 };
 
 bot.on('start', function (data) {
-  bot.postMessageToGroup('dev', 'BOT RUNNING', default_params);
+  bot.postMessageToGroup('dev', 'BOT RUNNING', default_params, null);
 });
 
 bot.on('message', function (data) {
@@ -32,7 +32,7 @@ bot.on('message', function (data) {
         dict.forEach(d => {
           if (d.keys.some(k => ~msg.indexOf(k))) {
             let message = d.message;
-            let params = default_params;
+            let params = { as_user: default_params.as_user};
             if (typeof message === 'function')
               message = message();
             if (message.params) {
