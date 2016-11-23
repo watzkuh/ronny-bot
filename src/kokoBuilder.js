@@ -1,22 +1,18 @@
 'use strict';
 
 function getDiglett() {
-  var diglett = ':digletthead:\n:diglettdirt:\n Hoppla, ein Digda hat den Kranplatz entdichtet.';
-  return diglett;
+  return ':digletthead:\n:diglettdirt:\n Hoppla, ein Digda hat den Kranplatz entdichtet.';
 }
 
 function isDigglettInDisguise(pokemoji) {
-  var rng = Math.random();
-  if (rng < 0.05) {
-    return true;
-  }
-  return false;
+  const rng = Math.random();
+  return rng < 0.05;
 }
 
 function getKokoBody(height) {
-  var exeggBody = '';
-  for (var i = 0; i < height; i++) {
-    var rng = Math.random();
+  let exeggBody = '';
+  for (let i = 0; i < height; i++) {
+    const rng = Math.random();
     if (rng < 0.66) {
       exeggBody += ':kokoneck:\n';
     } else if (rng < 0.77) {
@@ -36,29 +32,29 @@ function getKokoBody(height) {
   return exeggBody;
 }
 
-exports.getKoko = function() {
+exports.getKoko = function () {
   if (isDigglettInDisguise()) {
     return getDiglett();
   }
-  var pokemoji;
-  var rng = Math.random();
+  let pokemoji;
+  const rng = Math.random();
   if (rng > 0.9) {
     pokemoji = ':kokomohr:\n';
   } else {
     pokemoji = ':kokohead:\n';
   }
-  rng = Math.floor((Math.random() * 5) + 1);
-  pokemoji += getKokoBody(rng);
+  const nrOfNecks = Math.floor((Math.random() * 5) + 1);
+  pokemoji += getKokoBody(nrOfNecks);
   pokemoji += ':kokolegs:';
   return pokemoji;
 };
 
-exports.getDatepalm = function() {
-  var pokemoji;
-  var rng = Math.random();
+exports.getDatepalm = function () {
+  let pokemoji;
+  const rng = Math.random();
   pokemoji = ':derficker8:\n';
-  rng = Math.floor((Math.random() * 5) + 1);
-  pokemoji += getKokoBody(rng);
+  let nrOfNecks = Math.floor((Math.random() * 5) + 1);
+  pokemoji += getKokoBody(nrOfNecks);
   pokemoji += ':kokolegs:';
   return pokemoji;
 };

@@ -1,7 +1,7 @@
 'use strict';
 
 exports.safe = function() {
-  var message = {
+  const message = {
     msgString: 'Also safe?',
     params: {
       as_user: false,
