@@ -51,7 +51,6 @@ exports.getKoko = function () {
 
 exports.getDatepalm = function () {
   let pokemoji;
-  const rng = Math.random();
   pokemoji = ':derficker8:\n';
   const nrOfNecks = Math.floor((Math.random() * 5) + 1);
   pokemoji += getKokoBody(nrOfNecks);

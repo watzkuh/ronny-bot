@@ -5,7 +5,8 @@ RonnyBot is one of our first and most ambitious Projects at KranCorp.
 RonnyBot aims to imitate a realistic and authentic Cranefriend and Ronny behaviour.
 
 ## Usage
-Copy the `config.example.json` to `config.json` and set your api key.
+Copy the `config.example.json` to `config.json`, then set your api key and bot id. Alternatively you can set these as
+environment variables "BOT_TOKEN" and "BOT_ID". 
 
 ## Development
 If you want to contribute to RonnyBot, please note the following guidelines
